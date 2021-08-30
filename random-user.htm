@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./random-user.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    
+<div  class="radio" onclick="radio()">
+    <p>Select  Your Custom user : </p>
+    <input type="radio" id="male" name="gender"  value="male">
+    <label for="male">Male</label><br>
+
+    <input type="radio" id="female" name="gender" value="female">
+    <label for="female">Female</label><br>
+
+    <input type="radio" id="both" name="gender" checked value="both">
+    <label for="both">Both</label><br>
+</div>
+
+<div class="spinner-parent">
+      <div class="spinner"></div>
+    </div>
+    
+
+    <section>
+        <div class="user-parent">
+        </div>
+    </section>
+    <button class="user-btn" onclick="loadUser()" >load More User</button>
+
+
+    <div id="modal">
+        <div id="modal-body">
+            
+        </div>
+    </div>
+    
+
+
+
+    <script src="./random-user.js"></script>
+</body>
+</html>

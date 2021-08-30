@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comment 2 </title>
+
+    <style>
+        #parent{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin: 0 50px;
+        }
+
+        .comment{
+            background: #b3b3b3;
+            border: 1px solid #707070;
+            padding: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="comment">
+
+    </div>
+
+
+    <div id="parent">
+    </div>
+    
+
+
+
+    <script>
+
+        function loadData(){
+            fetch('https://jsonplaceholder.typicode.com/comments')
+                .then(res => res.json())
+                .then(data => displayData(data));
+        }
+        loadData();
+
+        function displayData(data){
+
+            data.forEach(comment => {
+                console.log(comment);
+
+                const div = document.createElement('div');
+                div.className = 'comment'
+
+                div.innerHTML = `
+                <h4> ${comment.name}</h4>
+                <p> ${comment.email}</p>
+                <p> ${comment.body}</p>
+
+                <button onclick="showInfo(${comment.id})" > see info </button>
+                `  ;
+                document.getElementById('parent').appendChild(div);
+            });
+        }
+
+
+        function showInfo (id) {
+            const url = `https://jsonplaceholder.typicode.com/comments/${id}`
+            fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('comment').innerHTML = `
+                <h4> ${data.name}</h4>
+                <p> ${data.email}</p>
+                <p> ${data.body}</p>
+            `;
+            })  
+        }
+    </script>
+</body>
+</html>

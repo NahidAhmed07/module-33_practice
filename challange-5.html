@@ -1,0 +1,81 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dynamic comment </title>
+    <style>
+        #parent{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap:40px;
+            margin: 0 50px;
+        }
+        .comment{
+            border: 1px solid #959595;
+            padding: 10px;
+            border-radius: 5px;
+            background: rgb(206, 206, 206);
+        }
+    </style>
+</head>
+<body>
+    <h1> Comment </h1>
+    <div id="single-comment"></div>
+
+    <div id="parent">
+
+    </div>
+    
+
+
+    <script>
+
+        function loadData(){
+            fetch('https://jsonplaceholder.typicode.com/comments')
+                .then(res => res.json())
+                .then(data => displayData(data))
+        }
+
+        loadData();
+
+        function displayData(data){
+            const parent = document.getElementById('parent');
+
+            data.forEach(comment => {
+                const div = document.createElement('div');
+                div.className = 'comment'
+                
+                div.innerHTML = `
+                    <h4>${comment.name}</h4>
+                    <p>${comment.email}</p>
+                    <p>${comment.body}</p>
+                    <button onclick="showDetails(${comment.id})">see details</button>
+                `;
+                parent.appendChild(div);
+            });
+
+        }
+
+
+        function showDetails( id){
+            fetch(`https://jsonplaceholder.typicode.com/comments/${id}`)
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("single-comment").innerHTML=`
+                    
+                    <h4>${data.name}</h4>
+                    <p>${data.email}</p>
+                    <p>${data.body}</p>
+                    
+                    `;
+
+                })
+        }
+
+    </script>
+</body>
+</html>

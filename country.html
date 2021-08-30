@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        #parent{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin: 20px 40px;
+        }
+
+        .country{
+            padding: 10px;
+            border: 1px solid #888888;
+            border-radius: 5px;
+        }
+        .country h5 {
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>All country list </h1>
+
+    <section>
+        <div id="parent"></div>
+    </section>
+    
+
+    
+
+
+    <script src="./country.js"></script>
+</body>
+</html>
